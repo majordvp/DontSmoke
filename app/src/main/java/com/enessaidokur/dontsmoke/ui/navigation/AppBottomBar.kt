@@ -15,11 +15,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enessaidokur.dontsmoke.R
-import com.enessaidokur.dontsmoke.ui.components.GriArkaPlan
 import com.enessaidokur.dontsmoke.ui.components.acikGriArkaPlan
-import com.enessaidokur.dontsmoke.ui.components.acıkyesil
 import com.enessaidokur.dontsmoke.ui.components.anaYesil
-import com.enessaidokur.dontsmoke.ui.components.systembarcubuguRengi
+
 
 @Composable
 fun BottomNavigationBar(
