@@ -50,6 +50,7 @@ private val textFieldBackgroundColor = Color(0xFFF5F5F5) // Gri TextField arka p
 fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
     var kacYildirIciliyor by remember { mutableStateOf("") }
     var gundeKacTaneIciliyor by remember { mutableStateOf("") }
+    var kacTl by remember { mutableStateOf("") }
 
     ArkaPlanBackground {
 
@@ -96,8 +97,8 @@ fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
                     Spacer(modifier = Modifier.height(8.dp))
                     TextField(
                         value = kacYildirIciliyor,
+                        modifier = Modifier.fillMaxWidth(),
                         onValueChange = { kacYildirIciliyor = it },
-                        modifier = Modifier.padding(10.dp).fillMaxWidth(),
                         placeholder = { Text("Örn: 5") },
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                         shape = RoundedCornerShape(12.dp),
@@ -116,7 +117,7 @@ fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
 
                     // --- "Günde kaç tane içiyorsun?" ---
                     Text(
-                        text = "Günde kaç tane içiyorsun?",
+                        text = "Günde kaç paket içiyorsunuz?",
                         fontWeight = FontWeight.SemiBold,
                         color = Color.Black,
                         modifier = Modifier.fillMaxWidth(), // Yazıyı sola yasla
@@ -139,8 +140,33 @@ fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
                         ),
                         singleLine = true
                     )
+                    // --- "Günde kaç tane içiyorsun?" ---
+                    Text(
+                        text = "Bir sigara paketi kaç TL?",
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.Black,
+                        modifier = Modifier.fillMaxWidth(), // Yazıyı sola yasla
+                        fontSize = 19.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    TextField( // OutlinedTextField yerine TextField
+                        value = kacTl,
+                        onValueChange = { kacTl = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Örn: 100") },
+                        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+                        shape = RoundedCornerShape(12.dp),
+                        colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = textFieldBackgroundColor, // Odaklanılmamışken arka plan rengi
+                            focusedContainerColor = textFieldBackgroundColor,   // Odaklanılmışken arka plan rengi
+                            focusedIndicatorColor = Color.Transparent,  // Alt çizgiyi kaldır
+                            unfocusedIndicatorColor = Color.Transparent, // Alt çizgiyi kaldır
+                            disabledIndicatorColor = Color.Transparent // Alt çizgiyi kaldır
+                        ),
+                        singleLine = true
+                    )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // --- İKONLAR ---
                     Row(
@@ -152,12 +178,12 @@ fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
                         Image(
                             painter = painterResource(id = R.drawable.liste),
                             contentDescription = "Liste",
-                            modifier = Modifier.size(150.dp)
+                            modifier = Modifier.size(140.dp)
                         )
                         Image(
                             painter = painterResource(id = R.drawable.sigara),
                             contentDescription = "Sigara",
-                            modifier = Modifier.size(150.dp)
+                            modifier = Modifier.size(140.dp)
                         )
                     }
                 }

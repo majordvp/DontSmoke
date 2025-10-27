@@ -19,10 +19,14 @@ private val colorPeach = Color(0xFFF89D60)
 
  val anaYesil = Color(0xFF03884B) // Ana Yeşil (TopAppBar için)
 
- val acıkyesil = Color(0xFF4CAF50) // Açık Yeşil (Status Bar için)
+ val acikYesil = Color(0xFF4CAF50) // Açık Yeşil (Status Bar için)
  val acikGriArkaPlan = Color(0xFFEEE9E9)
  val GriArkaPlan = Color(0xFFF6F0F0)
  val systembarcubuguRengi = Color(0xFF212121)
+
+val koyuMetin = Color(0xFF191C19)
+val progressGray = Color(0xFFE0E0E0)
+ val dividerColor = Color(0xFFF0F0F0) // Ayırıcı çizgiler için çok açık gri
 
 @Composable
 fun ArkaPlanBackground(content: @Composable () -> Unit) {
