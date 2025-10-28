@@ -1,7 +1,3 @@
-package com.enessaidokur.dontsmoke.ui.navigation
-
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -14,49 +10,79 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import com.enessaidokur.dontsmoke.R
 import com.enessaidokur.dontsmoke.ui.components.acikGriArkaPlan
 import com.enessaidokur.dontsmoke.ui.components.anaYesil
+import com.enessaidokur.dontsmoke.ui.navigation.Rotalar
 
+// BU FONKSİYONUN TAMAMINI KENDİ KODUNUZDAKİYLE DEĞİŞTİRİN
 
 @Composable
 fun BottomNavigationBar(
-    currentRoute: String, // O an hangi ekranda olduğumuzu bilmek için
-    onNavigate: (String) -> Unit, // Tıklanınca hangi ekrana gideceğimizi söylemek için
+    navController: NavHostController,
+    currentRoute: String?, // 1. Değişiklik: Mevcut rotayı parametre olarak al
 ) {
     NavigationBar(
-
         containerColor = acikGriArkaPlan
     ) {
+        // --- YATIRIM İTEMİ ---
+        NavigationBarItem(
+            icon = {
+                Icon(modifier = Modifier.size(35.dp), painter = painterResource(id = R.drawable.money), contentDescription = "Yatırım", tint = anaYesil)
+            },
+            label = { Text("Yatırım", color = Color.Black, fontSize = 15.sp, fontWeight = FontWeight.Bold) },
+            // 2. Değişiklik: Seçilme durumunu dinamik yap
+            selected = currentRoute == Rotalar.YATIRIM,
+            onClick = {
+                // 3. Değişiklik: Navigasyon mantığını düzelt
+                if (currentRoute != Rotalar.YATIRIM) {
+                    navController.navigate(Rotalar.YATIRIM) {
+                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
+            }
+        )
 
+        // --- ANA SAYFA İTEMİ ---
         NavigationBarItem(
-            modifier = Modifier.padding(bottom = 0.dp),
             icon = {
-                Icon(modifier = Modifier.size(35.dp),painter = painterResource(id = R.drawable.money),contentDescription = "Yatırım", tint = anaYesil)
-                // Icon(Icons.Filled.MonetizationOn, contentDescription = "Yatırım")
+                Icon(modifier = Modifier.size(35.dp), painter = painterResource(id = R.drawable.home), contentDescription = "Ana Sayfa", tint = anaYesil)
             },
-            label = { Text("Yatırım", color = Color.Black, fontSize = 15.sp,fontWeight = FontWeight.Bold) },
-            selected = false,
-            onClick = { /* Yatırım sayfasına git */ }
+            label = { Text("Ana sayfa", color = Color.Black, fontSize = 15.sp, fontWeight = FontWeight.Bold) },
+            // Seçilme durumunu dinamik yap
+            selected = currentRoute == Rotalar.ANA_SAYFA,
+            onClick = {
+                if (currentRoute != Rotalar.ANA_SAYFA) {
+                    navController.navigate(Rotalar.ANA_SAYFA) {
+                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
+            }
         )
+
+        // --- SAĞLIK İTEMİ ---
         NavigationBarItem(
             icon = {
-                Icon(modifier = Modifier.size(35.dp),painter = painterResource(id = R.drawable.home), contentDescription = "Ana Sayfa",tint = anaYesil)
-                // Veya Material ikonlarını kullanmak istersen:
-                // Icon(Icons.Filled.Home, contentDescription = "Ana Sayfa")
+                Icon(modifier = Modifier.size(35.dp), painter = painterResource(id = R.drawable.hearth), contentDescription = "Sağlık", tint = anaYesil)
             },
-            label = { Text("Ana sayfa",  color = Color.Black, fontSize = 15.sp,fontWeight = FontWeight.Bold) },
-            selected = true,
-            onClick = { /* Ana sayfaya git */ }
-        )
-        NavigationBarItem(
-            icon = {
-                Icon(modifier = Modifier.size(35.dp),painter = painterResource(id = R.drawable.hearth), contentDescription = "Sağlık",tint = anaYesil)
-                // Icon(Icons.Filled.VolunteerActivism, contentDescription = "Sağlık")
-            },
-            label = { Text("Sağlık",color = Color.Black, fontSize = 15.sp,fontWeight = FontWeight.Bold) },
-            selected = false,
-            onClick = { /* Sağlık sayfasına git */ }
+            label = { Text("Sağlık", color = Color.Black, fontSize = 15.sp, fontWeight = FontWeight.Bold) },
+            // Seçilme durumunu dinamik yap
+            selected = currentRoute == Rotalar.SAGLIK,
+            onClick = {
+                if (currentRoute != Rotalar.SAGLIK) {
+                    navController.navigate(Rotalar.SAGLIK) {
+                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
+            }
         )
     }
 }

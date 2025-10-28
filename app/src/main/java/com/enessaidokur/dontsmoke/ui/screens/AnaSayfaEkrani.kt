@@ -1,6 +1,7 @@
 package com.enessaidokur.dontsmoke.ui.screens
 
 
+import BottomNavigationBar
 import android.R.attr.text
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -51,6 +52,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.enessaidokur.dontsmoke.R
 import com.enessaidokur.dontsmoke.ui.components.acikGriArkaPlan
 import com.enessaidokur.dontsmoke.ui.components.acikYesil
@@ -59,8 +61,8 @@ import com.enessaidokur.dontsmoke.ui.components.dividerColor
 import com.enessaidokur.dontsmoke.ui.components.koyuMetin
 import com.enessaidokur.dontsmoke.ui.components.progressGray
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.enessaidokur.dontsmoke.ui.navigation.BottomNavigationBar
 
+import com.enessaidokur.dontsmoke.ui.navigation.Rotalar
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,12 +84,7 @@ fun AnaSayfaEkrani() {
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = anaYesil)
             )
         },
-        bottomBar = {
-            BottomNavigationBar(
-                currentRoute = "ana_sayfa_ekrani",
-                onNavigate = { /* TODO */ }
-            )
-        },
+
         containerColor = acikGriArkaPlan
     ) { innerPadding ->
 
@@ -426,5 +423,5 @@ fun TahminSatiri(zaman: String, para: String, hayat: String) {
 @Preview(showBackground = true)
 @Composable
 fun AnaSayfaEkraniPreview() {
-    AnaSayfaEkrani()
+
 }

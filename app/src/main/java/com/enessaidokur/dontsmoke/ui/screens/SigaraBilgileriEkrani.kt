@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enessaidokur.dontsmoke.R // <-- R dosyasını import etmen gerekiyor
@@ -47,7 +46,7 @@ import com.enessaidokur.dontsmoke.ui.components.darkTextColor
 private val textFieldBackgroundColor = Color(0xFFF5F5F5) // Gri TextField arka planı
 
 @Composable
-fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
+fun SigaraBilgileriEkrani(onIleriClicked: (String, String, String) -> Unit) {
     var kacYildirIciliyor by remember { mutableStateOf("") }
     var gundeKacTaneIciliyor by remember { mutableStateOf("") }
     var kacTl by remember { mutableStateOf("") }
@@ -191,7 +190,7 @@ fun SigaraBilgileriEkrani(onIleriClicked: (String, String) -> Unit) {
 
             // 3. İLERİ BUTONU (En altta)
             Button(
-                onClick = { onIleriClicked(kacYildirIciliyor, gundeKacTaneIciliyor) },
+                onClick = { onIleriClicked(kacYildirIciliyor, gundeKacTaneIciliyor,kacTl) },
                 modifier = Modifier
                     .align(Alignment.BottomCenter) // Ekranın en altına hizala
                     .fillMaxWidth()
