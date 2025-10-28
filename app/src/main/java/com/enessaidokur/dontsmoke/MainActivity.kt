@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 // KENDİ NAVGRAPH DOSYANI BURADAN IMPORT EDECEKSİN
  // << DOĞRUSU BU // << DİKKAT! BU SATIR EN ÖNEMLİSİ
 import com.enessaidokur.dontsmoke.ui.navigation.Navigasyon
+import com.enessaidokur.dontsmoke.ui.screens.SaglikEkrani
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
