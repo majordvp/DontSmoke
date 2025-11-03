@@ -13,6 +13,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation // navigation grafiği için
 import androidx.navigation.compose.rememberNavController
 import com.enessaidokur.dontsmoke.ui.screens.AnaSayfaEkrani
+import com.enessaidokur.dontsmoke.ui.screens.CüzdanEkrani
 import com.enessaidokur.dontsmoke.ui.screens.HosgeldinizEkrani
 import com.enessaidokur.dontsmoke.ui.screens.SaglikEkrani
 import com.enessaidokur.dontsmoke.ui.screens.SigaraBilgileriEkrani
@@ -34,6 +35,8 @@ object Rotalar {
     const val ANA_SAYFA = "ana_sayfa"
     const val YATIRIM = "yatirim"
     const val SAGLIK = "saglik"
+
+    const val CUZDAN = "cuzdan"
 }
 
 
@@ -124,7 +127,10 @@ fun AnaUygulamaIcerigi() { // ANA NavController'ı parametre olarak alır
             composable(Rotalar.ANA_SAYFA) { AnaSayfaEkrani() } // NavController'ı ilettik
             composable(Rotalar.YATIRIM) { YatirimEkrani()}
             composable(Rotalar.SAGLIK) { SaglikEkrani() }
+            composable(Rotalar.CUZDAN) { CüzdanEkrani() }
         }
 
         }
     }
+
+
