@@ -133,16 +133,4 @@ fun CuzdanEkrani(cuzdanViewModel: CuzdanViewModel) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CuzdanEkraniPreview() {
-    val previewViewModel = CuzdanViewModel()
-    // Önizleme için örnek veriler ekleyelim
-    previewViewModel.satinAl("Altın", 0.5, 2521.0, "gr", 5042.0, R.drawable.altin)
-    previewViewModel.satinAl("Dolar", 100.0, 4184.0, "$", 41.84, R.drawable.dolar)
-    previewViewModel.satinAl("Bitcoin", 0.001, 4524.92, "BTC", 4524920.73, R.drawable.bitcoin)
 
-    DontSmokeTheme {
-        CuzdanEkrani(cuzdanViewModel = previewViewModel)
-    }
-}

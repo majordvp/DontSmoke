@@ -50,65 +50,89 @@ fun YatirimEkrani(cuzdanViewModel: CuzdanViewModel) {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Card(
-                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = anaYesil),
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Kullanılabilir Bakiye", fontSize = 16.sp, color = Color.White.copy(alpha = 0.8f))
-                    Text("₺%.2f".format(cuzdanState.bakiye), fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.White)
-                }
-            }
 
-            YatirimAraciKarti(
-                isim = "Altın",
-                guncelFiyat = 5042.0,
-                ikonResId = R.drawable.altin,
-                mevcutBakiye = cuzdanState.bakiye,
-                butonAl = { harcananTutar, alinanMiktar ->
-                    cuzdanViewModel.satinAl("Altın", alinanMiktar, harcananTutar, "gr", 5042.0, R.drawable.altin)
+            if (cuzdanState.isFiyatlarLoading) {
+                CircularProgressIndicator(modifier = Modifier.padding(vertical = 50.dp), color = anaYesil)
+            } else if (cuzdanState.fiyatHataMesaji != null) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = cuzdanState.fiyatHataMesaji ?: "Fiyatlar alınamadı.",
+                        color = Color.Red,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                    Button(onClick = { cuzdanViewModel.fetchAnlikFiyatlar(showLoading = true) }) {
+                        Text("Tekrar Dene")
+                    }
                 }
-            )
-            YatirimAraciKarti(
-                isim = "Gümüş",
-                guncelFiyat = 66.0,
-                ikonResId = R.drawable.gumus,
-                mevcutBakiye = cuzdanState.bakiye,
-                butonAl = { harcananTutar, alinanMiktar ->
-                    cuzdanViewModel.satinAl("Gümüş", alinanMiktar, harcananTutar, "gr", 66.0, R.drawable.gumus)
+            } else {
+                // Bakiye Kartı
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = anaYesil),
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text("Kullanılabilir Bakiye", fontSize = 16.sp, color = Color.White.copy(alpha = 0.8f))
+                        Text("₺%.2f".format(cuzdanState.bakiye), fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                    }
                 }
-            )
-            YatirimAraciKarti(
-                birim = "$",
-                isim = "Dolar",
-                guncelFiyat = 41.84,
-                ikonResId = R.drawable.dolar,
-                mevcutBakiye = cuzdanState.bakiye,
-                butonAl = { harcananTutar, alinanMiktar ->
-                    cuzdanViewModel.satinAl("Dolar", alinanMiktar, harcananTutar, "$", 41.84, R.drawable.dolar)
-                }
-            )
-            YatirimAraciKarti(
-                birim = "€",
-                isim = "Euro",
-                guncelFiyat = 48.45,
-                ikonResId = R.drawable.euro,
-                mevcutBakiye = cuzdanState.bakiye,
-                butonAl = { harcananTutar, alinanMiktar ->
-                    cuzdanViewModel.satinAl("Euro", alinanMiktar, harcananTutar, "€", 48.45, R.drawable.euro)
-                }
-            )
-            YatirimAraciKarti(
-                birim = "BTC",
-                isim = "Bitcoin",
-                guncelFiyat = 4524920.73,
-                ikonResId = R.drawable.bitcoin,
-                mevcutBakiye = cuzdanState.bakiye,
-                butonAl = { harcananTutar, alinanMiktar ->
-                    cuzdanViewModel.satinAl("Bitcoin", alinanMiktar, harcananTutar, "BTC", 4524920.73, R.drawable.bitcoin)
-                }
-            )
+
+                // --- Fiyatları Doğrudan ViewModel'den Oku ---
+                val altinFiyati = cuzdanState.anlikFiyatlar["ALTIN"] ?: 0.0
+                val gumusFiyati = cuzdanState.anlikFiyatlar["GUMUS"] ?: 0.0
+                val dolarFiyati = cuzdanState.anlikFiyatlar["USD"] ?: 0.0
+                val euroFiyati = cuzdanState.anlikFiyatlar["EUR"] ?: 0.0
+                val bitcoinFiyati = cuzdanState.anlikFiyatlar["BTC"] ?: 0.0
+
+                YatirimAraciKarti(
+                    isim = "Altın",
+                    guncelFiyat = altinFiyati,
+                    ikonResId = R.drawable.altin,
+                    mevcutBakiye = cuzdanState.bakiye,
+                    butonAl = { harcananTutar, alinanMiktar ->
+                        cuzdanViewModel.satinAl("Altın", alinanMiktar, harcananTutar, "gr", altinFiyati, R.drawable.altin)
+                    }
+                )
+                YatirimAraciKarti(
+                    isim = "Gümüş",
+                    guncelFiyat = gumusFiyati,
+                    ikonResId = R.drawable.gumus,
+                    mevcutBakiye = cuzdanState.bakiye,
+                    butonAl = { harcananTutar, alinanMiktar ->
+                        cuzdanViewModel.satinAl("Gümüş", alinanMiktar, harcananTutar, "gr", gumusFiyati, R.drawable.gumus)
+                    }
+                )
+                YatirimAraciKarti(
+                    birim = "$",
+                    isim = "Dolar",
+                    guncelFiyat = dolarFiyati,
+                    ikonResId = R.drawable.dolar,
+                    mevcutBakiye = cuzdanState.bakiye,
+                    butonAl = { harcananTutar, alinanMiktar ->
+                        cuzdanViewModel.satinAl("Dolar", alinanMiktar, harcananTutar, "$", dolarFiyati, R.drawable.dolar)
+                    }
+                )
+                YatirimAraciKarti(
+                    birim = "€",
+                    isim = "Euro",
+                    guncelFiyat = euroFiyati,
+                    ikonResId = R.drawable.euro,
+                    mevcutBakiye = cuzdanState.bakiye,
+                    butonAl = { harcananTutar, alinanMiktar ->
+                        cuzdanViewModel.satinAl("Euro", alinanMiktar, harcananTutar, "€", euroFiyati, R.drawable.euro)
+                    }
+                )
+                YatirimAraciKarti(
+                    birim = "BTC",
+                    isim = "Bitcoin",
+                    guncelFiyat = bitcoinFiyati,
+                    ikonResId = R.drawable.bitcoin,
+                    mevcutBakiye = cuzdanState.bakiye,
+                    butonAl = { harcananTutar, alinanMiktar ->
+                        cuzdanViewModel.satinAl("Bitcoin", alinanMiktar, harcananTutar, "BTC", bitcoinFiyati, R.drawable.bitcoin)
+                    }
+                )
+            }
         }
     }
 }
@@ -120,7 +144,7 @@ fun YatirimAraciKarti(
     guncelFiyat: Double,
     @DrawableRes ikonResId: Int,
     mevcutBakiye: Double,
-    butonAl: (Double, Double) -> Unit, // (TL, Miktar)
+    butonAl: (Double, Double) -> Unit,
     birim: String = "gr"
 ) {
     var girilenTutar by remember { mutableStateOf("") }
