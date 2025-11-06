@@ -27,7 +27,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -211,11 +213,11 @@ fun IstatistikKarti() {
                     modifier = Modifier.weight(1f) // İki kutu da eşit yer kaplasın
                 )
                 // Dikey Ayırıcı
-                Divider(
-                    color = dividerColor,
+                HorizontalDivider(
                     modifier = Modifier
                         .fillMaxHeight() // Row yüksekliği boyunca uzan
-                        .width(1.dp)
+                        .width(1.dp),
+                    thickness = DividerDefaults.Thickness, color = dividerColor
                 )
                 BilgiKutusu(
                     baslik = "Kazanılan Para",
@@ -227,7 +229,11 @@ fun IstatistikKarti() {
             }
 
             // Yatay Ayırıcı
-            Divider(color = dividerColor, modifier = Modifier.height(1.dp))
+            HorizontalDivider(
+                modifier = Modifier.height(1.dp),
+                thickness = DividerDefaults.Thickness,
+                color = dividerColor
+            )
 
             // 2. Alt Sıra (Hayat & İçilmeyen)
             Row(
@@ -243,11 +249,11 @@ fun IstatistikKarti() {
                     modifier = Modifier.weight(1f)
                 )
                 // Dikey Ayırıcı
-                Divider(
-                    color = dividerColor,
+                HorizontalDivider(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .width(1.dp)
+                        .width(1.dp),
+                    thickness = DividerDefaults.Thickness, color = dividerColor
                 )
                 BilgiKutusu(
                     baslik = "İçilmeyen Sigaralar",
@@ -384,15 +390,15 @@ fun GelecekTahminKarti() {
 
             // Tablo Satırları (Statik)
             TahminSatiri(zaman = "1 Hafta", para = "700 ₺", hayat = "1g 1s 40d")
-            Divider(color = dividerColor, thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp, color = dividerColor)
             TahminSatiri(zaman = "1 Ay", para = "3.000 ₺", hayat = "4g 14s 0d")
-            Divider(color = dividerColor, thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp, color = dividerColor)
             TahminSatiri(zaman = "1 Yıl", para = "36.500 ₺", hayat = "1A 25g 18s")
-            Divider(color = dividerColor, thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp, color = dividerColor)
             TahminSatiri(zaman = "5 Yıl", para = "182.500 ₺", hayat = "9A 8g 19s")
-            Divider(color = dividerColor, thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp, color = dividerColor)
             TahminSatiri(zaman = "10 Yıl", para = "365.000 ₺", hayat = "1Y 6A 17g")
-            Divider(color = dividerColor, thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp, color = dividerColor)
             TahminSatiri(zaman = "20 Yıl", para = "730.000 ₺", hayat = "3Y 1A 5g")
         }
     }
