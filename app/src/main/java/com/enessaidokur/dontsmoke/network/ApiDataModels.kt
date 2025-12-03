@@ -1,4 +1,4 @@
-package com.enessaidokur.dontsmoke.ui.network
+package com.enessaidokur.dontsmoke.network
 
 // --- DÖVİZ KURLARI İÇİN ---
 data class AllCurrencyResponse(
