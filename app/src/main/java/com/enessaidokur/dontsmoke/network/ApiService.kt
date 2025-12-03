@@ -1,4 +1,4 @@
-package com.enessaidokur.dontsmoke.ui.network
+package com.enessaidokur.dontsmoke.network
 
 import retrofit2.http.GET
 

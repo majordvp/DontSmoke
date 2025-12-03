@@ -1,4 +1,4 @@
-package com.enessaidokur.dontsmoke.ui.network
+package com.enessaidokur.dontsmoke.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor // Yeni eklenen import

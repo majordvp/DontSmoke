@@ -1,4 +1,4 @@
-package com.enessaidokur.dontsmoke.ui.network
+package com.enessaidokur.dontsmoke.network
 
 // Yeni API'den (collectapi) gelen JSON yapısına uygun veri sınıfları
 

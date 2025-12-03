@@ -58,13 +58,17 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     
     // Retrofit & Gson
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    // Hata ayıklama için yeni eklenen bağımlılık
-    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.logging.interceptor)
 
-    implementation("androidx.navigation:navigation-compose:2.9.5")
+    implementation(libs.androidx.navigation.compose)
 
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
-    
+    implementation(libs.accompanist.systemuicontroller)
+
+    // Kalıcı Hafıza (DataStore) için gerekli kütüphaneler
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4") // Canlı veri takibi için
+
+
 }
