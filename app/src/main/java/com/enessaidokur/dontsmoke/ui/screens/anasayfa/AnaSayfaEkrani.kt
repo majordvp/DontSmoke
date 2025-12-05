@@ -49,7 +49,7 @@ fun AnaSayfaEkrani(viewModel: AnaSayfaViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(acikGriArkaPlan) // Arka plan rengini buradan veriyoruz
+            .background(acikYesil) // Arka plan rengini buradan veriyoruz
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
