@@ -90,7 +90,7 @@ class YatirimViewModel(private val repository: KullaniciVeriRepository) : ViewMo
         viewModelScope.launch(Dispatchers.IO) {
             fetchAnlikFiyatlar(showLoading = true)
             while (true) {
-                delay(18000000L)
+                delay(3600000L)
                 fetchAnlikFiyatlar(showLoading = false)
             }
         }

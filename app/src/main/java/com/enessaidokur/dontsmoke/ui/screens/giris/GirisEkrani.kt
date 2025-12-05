@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun GirisEkrani(onGirisTamamlandi: () -> Unit) {
     LaunchedEffect(Unit) {
-        delay(2000) // 2 saniye bekle
+        delay(1500) // 2 saniye bekle
         onGirisTamamlandi()
     }
 
