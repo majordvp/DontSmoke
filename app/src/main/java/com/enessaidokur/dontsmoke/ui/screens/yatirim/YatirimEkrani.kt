@@ -222,9 +222,11 @@ fun YatirimAraciKarti(
                         colors = TextFieldDefaults.colors(
                             focusedIndicatorColor = anaYesil,
                             unfocusedIndicatorColor = Color.LightGray,
-                            focusedContainerColor = acikGriArkaPlan,
-                            unfocusedContainerColor = acikGriArkaPlan,
-                            cursorColor = anaYesil
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            cursorColor = anaYesil,
+                            focusedTextColor = Color.Black
+
                         ),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         modifier = Modifier.fillMaxWidth()
